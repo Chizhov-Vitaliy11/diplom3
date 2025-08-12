@@ -62,7 +62,7 @@ public class RegisterPage extends BasePage {
     @Step("Ожидание завершения регистрации")
     private void waitForRegistrationComplete() {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(10))
+            new WebDriverWait(driver, Duration.ofSeconds(30))
                     .until(ExpectedConditions.or(
                             ExpectedConditions.urlContains("/login"),
                             ExpectedConditions.visibilityOfElementLocated(PASSWORD_ERROR)

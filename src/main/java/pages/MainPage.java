@@ -16,7 +16,7 @@ public class MainPage extends BasePage {
     private static final By CONSTRUCTOR_BUTTON =By.xpath("//*[text()='Конструктор']");
     private static final By LOGO_BURGER = By.cssSelector(".AppHeader_header__logo__2D0X2");
     private static final String BASE_URL = "https://stellarburgers.nomoreparties.site";
-
+    private final By ACTIVE_BUNS_SECTION = By.xpath(".//div[contains(@class, 'current')]/span[text()='Булки']");
     public MainPage(WebDriver driver) {
         super(driver);
     }
@@ -85,7 +85,11 @@ public class MainPage extends BasePage {
         waitForElementClickable(LOGO_BURGER).click();
         return new LoginPage(driver);
     }
+    @Step("Проверить, что раздел  активен")
+    public boolean isBunsSectionActive() {
+        return waitForElementVisible(ACTIVE_BUNS_SECTION).isDisplayed();
 
+    }
 
     public void open() {
         driver.get(BASE_URL);

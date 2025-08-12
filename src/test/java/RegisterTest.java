@@ -12,7 +12,7 @@ public class RegisterTest extends BaseTest {
     @Test
     @DisplayName("Успешная регистрация пользователя")
     public void testSuccessfulRegistration() {
-        userSteps.deleteUser(accessToken);
+    userSteps.deleteUser(accessToken);
         accessToken = null;
 
         MainPage mainPage = new MainPage(driver);

@@ -9,7 +9,11 @@ public class ConstructorTest extends BaseTest {
     @DisplayName("Переход к разделу 'Булки'")
     public void testBunsSection() {
         mainPage.clickSaucesSection();
+
         mainPage.clickBunsSection();
+        mainPage.isBunsSectionActive();
+
+        System.out.println(mainPage.getActiveSectionText());
         assertEquals("Булки", mainPage.getActiveSectionText());
     }
 

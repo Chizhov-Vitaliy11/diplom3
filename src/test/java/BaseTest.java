@@ -4,10 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import  api.models.User;
 import  api.steps.UserSteps;
-import  pages.LoginPage;
-import  pages.MainPage;
-import  pages.RegisterPage;
-import  pages.RestorePasswordPage;
+import pages.*;
 import  utils.Browser;
 import  utils.RandomGenerationData;
 
@@ -18,7 +15,7 @@ import java.util.Properties;
 public class BaseTest {
     protected WebDriver driver;
     protected String browserName;
-
+protected NavigationPage navigationPage;
     protected MainPage mainPage;
     protected LoginPage loginPage;
     protected RegisterPage registerPage;
@@ -45,7 +42,7 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         registerPage = new RegisterPage(driver);
         restorePasswordPage = new RestorePasswordPage(driver);
-
+        navigationPage = new NavigationPage(driver);
         userSteps = new UserSteps();
         user = new User();
         user.setEmail(RandomGenerationData.generateRandomEmail());

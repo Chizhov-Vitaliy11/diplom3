@@ -9,10 +9,11 @@ import java.time.Duration;
 public abstract class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected  By locator;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public abstract boolean isPageLoaded();
@@ -22,10 +23,15 @@ public abstract class BasePage {
     }
 
     protected WebElement waitForElementVisible(By locator) {
+
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     protected WebElement waitForElementClickable(By locator) {
+
+
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
+
+
 }
