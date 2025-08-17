@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class NavigationPage extends BasePage {
-    private final By PROFILE_LINK = By.xpath(".//a[contains(@class, 'Account_link_') and text()='Профиль']");
-    private final By LOGOUT_BUTTON = By.xpath(".//button[text()='Выход']");
+    private static final By PROFILE_LINK = By.xpath(".//a[contains(@class, 'Account_link_') and text()='Профиль']");
+    private static final By LOGOUT_BUTTON = By.xpath(".//button[text()='Выход']");
 
     public NavigationPage(WebDriver driver) {
         super(driver);
