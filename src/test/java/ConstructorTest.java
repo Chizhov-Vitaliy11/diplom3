@@ -1,9 +1,17 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConstructorTest extends BaseTest {
+
+    // пользователь не создается.
+    @BeforeEach
+    public void setUp() {
+        createUser = false;
+        super.setUp();
+    }
 
     @Test
     @DisplayName("Переход к разделу 'Булки'")

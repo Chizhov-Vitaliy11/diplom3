@@ -2,11 +2,11 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import  api.models.User;
-import  api.steps.UserSteps;
+import api.models.User;
+import api.steps.UserSteps;
 import pages.*;
-import  utils.Browser;
-import  utils.RandomGenerationData;
+import utils.Browser;
+import utils.RandomGenerationData;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,12 +15,12 @@ import java.util.Properties;
 public class BaseTest {
     protected WebDriver driver;
     protected String browserName;
-protected NavigationPage navigationPage;
+    protected NavigationPage navigationPage;
     protected MainPage mainPage;
     protected LoginPage loginPage;
     protected RegisterPage registerPage;
     protected RestorePasswordPage restorePasswordPage;
-
+    protected boolean createUser = true;
     protected UserSteps userSteps;
     protected User user;
     protected String accessToken;
@@ -48,10 +48,11 @@ protected NavigationPage navigationPage;
         user.setEmail(RandomGenerationData.generateRandomEmail());
         user.setPassword(RandomGenerationData.generateRandomPassword(8));
         user.setName(RandomGenerationData.generateRandomName());
-
-        Response response = userSteps.createUser(user);
-        accessToken = userSteps.getAccessToken(response);
-
+        //добавлено условие нужно создавать пользователя или нет
+        if (createUser) {
+            Response response = userSteps.createUser(user);
+            accessToken = userSteps.getAccessToken(response);
+        }
         driver.get("https://stellarburgers.nomoreparties.site");
     }
 

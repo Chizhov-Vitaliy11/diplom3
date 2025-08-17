@@ -1,3 +1,4 @@
+import io.restassured.response.Response;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -6,12 +7,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class LoginTest extends  BaseTest {
+public class LoginTest extends BaseTest {
 
-    @BeforeEach
-    public void createTestUser() {
-        userSteps.createUser(user);
-    }
+
 
     @Test
     @DisplayName("Вход через кнопку 'Войти в аккаунт'")
@@ -51,15 +49,5 @@ public class LoginTest extends  BaseTest {
         assertTrue(mainPage.isOrderButtonVisible(),"Ожидается, что вход через форму восстановления пароля выполнен успешно");
     }
 
-    @AfterEach
-    public void deleteTestUser() {
-        try {
-            String token = userSteps.getAccessToken(userSteps.login(user));
-            if (token != null) {
-                userSteps.deleteUser(token);
-            }
-        } catch (Exception e) {
-            System.out.println("Failed to delete test user: " + e.getMessage());
-        }
-    }
+
 }
