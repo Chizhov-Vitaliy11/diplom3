@@ -43,13 +43,14 @@ public class BaseTest {
         registerPage = new RegisterPage(driver);
         restorePasswordPage = new RestorePasswordPage(driver);
         navigationPage = new NavigationPage(driver);
-        userSteps = new UserSteps();
-        user = new User();
-        user.setEmail(RandomGenerationData.generateRandomEmail());
-        user.setPassword(RandomGenerationData.generateRandomPassword(8));
-        user.setName(RandomGenerationData.generateRandomName());
+
         //добавлено условие нужно создавать пользователя или нет
         if (createUser) {
+            userSteps = new UserSteps();
+            user = new User();
+            user.setEmail(RandomGenerationData.generateRandomEmail());
+            user.setPassword(RandomGenerationData.generateRandomPassword(8));
+            user.setName(RandomGenerationData.generateRandomName());
             Response response = userSteps.createUser(user);
             accessToken = userSteps.getAccessToken(response);
         }

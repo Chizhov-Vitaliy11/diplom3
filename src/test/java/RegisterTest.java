@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
@@ -9,10 +10,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterTest extends BaseTest {
 
+    // пользователь не создается.
+    @BeforeEach
+    public void setUp() {
+        createUser = false;
+        super.setUp();
+    }
     @Test
     @DisplayName("Успешная регистрация пользователя")
     public void testSuccessfulRegistration() {
-    userSteps.deleteUser(accessToken);
+
         accessToken = null;
 
         MainPage mainPage = new MainPage(driver);
