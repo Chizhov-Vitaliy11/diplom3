@@ -1,3 +1,6 @@
+import api.models.User;
+import api.steps.UserSteps;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,17 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RegisterTest extends BaseTest {
 
-    // пользователь не создается.
-    @BeforeEach
-    public void setUp() {
-        createUser = false;
-        super.setUp();
-    }
+
+
     @Test
     @DisplayName("Успешная регистрация пользователя")
     public void testSuccessfulRegistration() {
 
-        accessToken = null;
+
 
         MainPage mainPage = new MainPage(driver);
         mainPage.open();
@@ -30,12 +29,15 @@ public class RegisterTest extends BaseTest {
         loginPage.clickRegisterLink();
 
         RegisterPage registerPage = new RegisterPage(driver);
+        String name = RandomGenerationData.generateRandomName();
+        String email = RandomGenerationData.generateRandomEmail();
+        String password = RandomGenerationData.generateRandomPassword(8);
         registerPage.register(
-                RandomGenerationData.generateRandomName(),
-                RandomGenerationData.generateRandomEmail(),
-                RandomGenerationData.generateRandomPassword(8)
+                name,
+                email,
+                password
         );
-
+        loginUser(name,email,password);
         assertTrue(loginPage.isLoginButtonDisplayed());
     }
 

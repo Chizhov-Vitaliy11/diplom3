@@ -44,16 +44,16 @@ public class BaseTest {
         restorePasswordPage = new RestorePasswordPage(driver);
         navigationPage = new NavigationPage(driver);
 
-        //добавлено условие нужно создавать пользователя или нет
-        if (createUser) {
-            userSteps = new UserSteps();
-            user = new User();
-            user.setEmail(RandomGenerationData.generateRandomEmail());
-            user.setPassword(RandomGenerationData.generateRandomPassword(8));
-            user.setName(RandomGenerationData.generateRandomName());
-            Response response = userSteps.createUser(user);
-            accessToken = userSteps.getAccessToken(response);
-        }
+
+//
+//            userSteps = new UserSteps();
+//            user = new User();
+//            user.setEmail(RandomGenerationData.generateRandomEmail());
+//            user.setPassword(RandomGenerationData.generateRandomPassword(8));
+//            user.setName(RandomGenerationData.generateRandomName());
+//            Response response = userSteps.createUser(user);
+//            accessToken = userSteps.getAccessToken(response);
+
         driver.get("https://stellarburgers.nomoreparties.site");
     }
 
@@ -66,6 +66,32 @@ public class BaseTest {
             throw new RuntimeException("Error loading properties file", e);
         }
     }
+
+    protected void createUserData(String email, String password, String name) {
+        userSteps = new UserSteps();
+        user = new User();
+        //RandomGenerationData.generateRandomEmail()
+        user.setEmail(email);
+//    RandomGenerationData.generateRandomPassword(8)
+        user.setPassword(password);
+        /// RandomGenerationData.generateRandomName()
+        user.setName(name);
+        Response response = userSteps.createUser(user);
+        accessToken = userSteps.getAccessToken(response);
+
+    }
+
+    protected void loginUser(String name, String email, String password) {
+        userSteps = new UserSteps();
+        user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setName(name);
+        Response response = userSteps.login(user);
+        accessToken = userSteps.getAccessToken(response);
+
+    }
+
 
     @AfterEach
     public void tearDown() {

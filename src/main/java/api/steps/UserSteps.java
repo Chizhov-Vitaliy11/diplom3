@@ -44,7 +44,7 @@ public class UserSteps {
     }
 
     @Step("Логин пользователя")
-    public Response login(User user) {
+    public static Response login(User user) {
         return given()
                 .log().all()
                 .header("Content-type", "application/json")

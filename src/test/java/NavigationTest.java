@@ -1,11 +1,22 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.RandomGenerationData;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NavigationTest extends BaseTest {
-
+    @Override
+    @BeforeEach
+    public void setUp() {
+        super.setUp();
+        createUserData(
+                RandomGenerationData.generateRandomEmail(),
+                RandomGenerationData.generateRandomPassword(8),
+                RandomGenerationData.generateRandomName()
+        );
+    }
     @Test
     @DisplayName("Переход в личный кабинет переход по нажатию на кнопку 'Личный кабинет'")
     public void testPersonalCabinet() {

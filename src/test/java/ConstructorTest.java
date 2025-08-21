@@ -6,12 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConstructorTest extends BaseTest {
 
-    // пользователь не создается.
-    @BeforeEach
-    public void setUp() {
-        createUser = false;
-        super.setUp();
-    }
 
     @Test
     @DisplayName("Переход к разделу 'Булки'")
